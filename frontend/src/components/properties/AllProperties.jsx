@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropertyForm from '../PropertyForm';
+import AddPropertyWizard from './AddPropertyWizard';
 import '../../styles/redwood-authentic.css';
 
 import { API_URL } from '../../config/api';
@@ -11,6 +12,7 @@ function AllProperties() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [showWizard, setShowWizard] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
   
   // Advanced filters
@@ -95,7 +97,7 @@ function AllProperties() {
 
   const handleCreate = () => {
     setSelectedProperty(null);
-    setShowForm(true);
+    setShowWizard(true);
   };
 
   const handleEdit = (property) => {
@@ -393,6 +395,17 @@ function AllProperties() {
           property={selectedProperty}
           onSuccess={() => {
             setShowForm(false);
+            fetchProperties();
+          }}
+        />
+      )}
+
+      {/* Property Wizard Modal */}
+      {showWizard && (
+        <AddPropertyWizard
+          onClose={() => setShowWizard(false)}
+          onSuccess={() => {
+            setShowWizard(false);
             fetchProperties();
           }}
         />
