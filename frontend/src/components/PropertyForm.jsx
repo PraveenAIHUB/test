@@ -124,6 +124,7 @@ function PropertyForm({ isOpen, onClose, property, onSuccess }) {
   const [googleMapsKey, setGoogleMapsKey] = useState('');
   const [googleMapsReady, setGoogleMapsReady] = useState(false);
   const lastSelectedQueryRef = useRef(null);
+  const [addressAutoFilled, setAddressAutoFilled] = useState(false);
 
   // Fetch config and load Google Maps script when form opens (use Google instead of Mapbox/Leaflet when key set)
   useEffect(() => {
@@ -245,6 +246,7 @@ function PropertyForm({ isOpen, onClose, property, onSuccess }) {
 
   const handleMapClick = useCallback(async (lat, lng) => {
     setGeocodeLoading(true);
+    setAddressAutoFilled(false);
     try {
       const base = API_URL || '/api';
       const { data } = await axios.post(`${base}/properties/geocode`, { latitude: lat, longitude: lng });
@@ -255,18 +257,20 @@ function PropertyForm({ isOpen, onClose, property, onSuccess }) {
           ...prev,
           property_name: (d.suggested_property_name && String(d.suggested_property_name).trim()) ? String(d.suggested_property_name).trim() : prev.property_name,
           project_name: (d.suggested_tower && String(d.suggested_tower).trim()) ? String(d.suggested_tower).trim() : prev.project_name,
-          address: d.address_line1 ?? prev.address,
-          city: d.city ?? prev.city,
-          state: d.state ?? prev.state,
-          county: d.county ?? prev.county,
-          country: d.country ?? prev.country,
-          zip_code: d.postal_code ?? prev.zip_code,
+          address: d.address_line1 || prev.address,
+          city: d.city || prev.city,
+          state: d.state || prev.state,
+          county: d.county || prev.county,
+          country: d.country || prev.country,
+          zip_code: d.postal_code || prev.zip_code,
           latitude: d.latitude ?? lat,
           longitude: d.longitude ?? lng
         }));
         setMarkerPosition([d.latitude ?? lat, d.longitude ?? lng]);
         setMapCenter([d.latitude ?? lat, d.longitude ?? lng]);
-        setMapQuery(fullAddress); // so the search box shows the clicked address
+        setMapQuery(fullAddress);
+        setAddressAutoFilled(true);
+        setTimeout(() => setAddressAutoFilled(false), 3000);
       } else {
         setFormData(prev => ({ ...prev, latitude: String(lat), longitude: String(lng) }));
         setMarkerPosition([lat, lng]);
@@ -315,18 +319,25 @@ function PropertyForm({ isOpen, onClose, property, onSuccess }) {
       ...prev,
       property_name: (item.suggested_property_name && item.suggested_property_name.trim()) ? item.suggested_property_name.trim() : prev.property_name,
       project_name: (item.suggested_tower && item.suggested_tower.trim()) ? item.suggested_tower.trim() : prev.project_name,
-      address: item.address_line1 ?? prev.address,
-      city: item.city ?? prev.city,
-      state: item.state ?? prev.state,
-      county: item.county ?? prev.county,
-      country: item.country ?? prev.country,
-      zip_code: item.postal_code ?? prev.zip_code,
+      address: item.address_line1 || prev.address,
+      city: item.city || prev.city,
+      state: item.state || prev.state,
+      county: item.county || prev.county,
+      country: item.country || prev.country,
+      zip_code: item.postal_code || prev.zip_code,
       latitude: item.latitude != null ? String(item.latitude) : prev.latitude,
       longitude: item.longitude != null ? String(item.longitude) : prev.longitude
     }));
     setMapQuery(selectedText);
     setSuggestions([]);
     setShowSuggestions(false);
+    setAddressAutoFilled(true);
+    setTimeout(() => setAddressAutoFilled(false), 3000);
+
+    if (item.latitude != null && item.longitude != null) {
+      setMarkerPosition([item.latitude, item.longitude]);
+      setMapCenter([item.latitude, item.longitude]);
+    }
   };
 
   const handleGeocode = async () => {
@@ -423,13 +434,13 @@ function PropertyForm({ isOpen, onClose, property, onSuccess }) {
   };
 
   return (
-    <Modal 
-      isOpen={isOpen} 
-      onClose={onClose} 
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
       title={property ? 'Edit Property' : 'Create New Property'}
-      size="large"
+      size="xlarge"
     >
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{ maxHeight: 'calc(90vh - 120px)', overflowY: 'auto', padding: '0 2px' }}>
         {error && (
           <div className="rw-alert rw-alert-error" style={{ marginBottom: '16px' }}>
             {error}
@@ -437,9 +448,10 @@ function PropertyForm({ isOpen, onClose, property, onSuccess }) {
         )}
 
         <div className="rw-form-group" style={{ marginBottom: '20px' }}>
-          <label className="rw-label">Location – search and map</label>
-          <p style={{ fontSize: '12px', color: 'var(--gray-500)', marginBottom: '8px' }}>
-            Type an address for suggestions; include city name (e.g. Featherlite The Address, Chennai) for better results. Click a suggestion or the map to set location.
+          <label className="rw-label">📍 Location Search & Map</label>
+          <p style={{ fontSize: '13px', color: 'var(--gray-600)', marginBottom: '12px', lineHeight: '1.5' }}>
+            <strong>Search:</strong> Type an address and select from suggestions<br/>
+            <strong>Or click on the map:</strong> Click anywhere to auto-fill address fields
           </p>
           <div style={{ position: 'relative', marginBottom: '8px' }}>
             <input
@@ -492,7 +504,23 @@ function PropertyForm({ isOpen, onClose, property, onSuccess }) {
               </ul>
             )}
           </div>
-          <div style={{ height: '260px', width: '100%', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--gray-300)' }}>
+          {geocodeLoading && (
+            <div style={{
+              padding: '8px 12px',
+              background: '#EFF6FF',
+              color: '#1E40AF',
+              borderRadius: '6px',
+              fontSize: '13px',
+              marginBottom: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}>
+              <span style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }}>⏳</span>
+              Getting address details...
+            </div>
+          )}
+          <div style={{ height: '300px', width: '100%', borderRadius: '8px', overflow: 'hidden', border: '2px solid var(--gray-300)', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
             {googleMapsReady && googleMapsKey ? (
               <GoogleMapPicker
                 center={mapCenter}
@@ -623,6 +651,24 @@ function PropertyForm({ isOpen, onClose, property, onSuccess }) {
           />
         </div>
 
+        {addressAutoFilled && (
+          <div style={{
+            padding: '12px 16px',
+            background: '#D1FAE5',
+            color: '#065F46',
+            borderRadius: '8px',
+            fontSize: '14px',
+            marginBottom: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            border: '1px solid #34D399'
+          }}>
+            <span style={{ fontSize: '18px' }}>✓</span>
+            <strong>Address auto-filled!</strong> Review and edit the fields below if needed.
+          </div>
+        )}
+
         <div className="rw-form-group">
           <label htmlFor="address" className="rw-label">Address *</label>
           <input
@@ -633,6 +679,7 @@ function PropertyForm({ isOpen, onClose, property, onSuccess }) {
             value={formData.address}
             onChange={handleChange}
             required
+            style={addressAutoFilled ? { background: '#F0FDF4', border: '2px solid #34D399' } : {}}
           />
         </div>
 
@@ -647,6 +694,7 @@ function PropertyForm({ isOpen, onClose, property, onSuccess }) {
               value={formData.city}
               onChange={handleChange}
               required
+              style={addressAutoFilled ? { background: '#F0FDF4', border: '2px solid #34D399' } : {}}
             />
           </div>
 
@@ -660,6 +708,7 @@ function PropertyForm({ isOpen, onClose, property, onSuccess }) {
               value={formData.state}
               onChange={handleChange}
               required
+              style={addressAutoFilled ? { background: '#F0FDF4', border: '2px solid #34D399' } : {}}
             />
           </div>
         </div>
@@ -675,6 +724,7 @@ function PropertyForm({ isOpen, onClose, property, onSuccess }) {
               value={formData.county}
               onChange={handleChange}
               placeholder="e.g. Nairobi"
+              style={addressAutoFilled ? { background: '#F0FDF4', border: '2px solid #34D399' } : {}}
             />
           </div>
           <div className="rw-form-group">
@@ -687,6 +737,7 @@ function PropertyForm({ isOpen, onClose, property, onSuccess }) {
               value={formData.zip_code}
               onChange={handleChange}
               required
+              style={addressAutoFilled ? { background: '#F0FDF4', border: '2px solid #34D399' } : {}}
             />
           </div>
 
@@ -700,6 +751,7 @@ function PropertyForm({ isOpen, onClose, property, onSuccess }) {
               value={formData.country}
               onChange={handleChange}
               required
+              style={addressAutoFilled ? { background: '#F0FDF4', border: '2px solid #34D399' } : {}}
             />
           </div>
         </div>
