@@ -1,0 +1,21 @@
+# Property Pro - Local / OCI run with Docker Compose
+# Usage: docker compose up -d
+# Ensure backend/.env exists (copy from backend/.env.example).
+
+services:
+  app:
+    build: .
+    image: property-pro:latest
+    container_name: property-pro-app
+    ports:
+      - "3000:3000"
+    env_file:
+      - backend/.env
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    # For Oracle DB: mount wallet if using local wallet path
+    # volumes:
+    #   - ./wallet:/app/wallet:ro
+    # and set TNS_ADMIN=/app/wallet in .env

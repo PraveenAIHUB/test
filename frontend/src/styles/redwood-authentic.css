@@ -1,0 +1,1590 @@
+/**
+ * Oracle RedWood Design System - Authentic Theme
+ * Based on Oracle Cloud Applications UI
+ * Property Pro Application
+ */
+
+:root {
+  /* ===== AUTHENTIC ORACLE REDWOOD COLOR PALETTE ===== */
+
+  /* Primary Colors - Oracle RedWood Red */
+  --rw-primary: #C74634;
+  --rw-primary-dark: #A03828;
+  --rw-primary-light: #D96656;
+  --rw-primary-bg: #FFEBEE;
+
+  /* Secondary Color - Dark Teal (for charts and accents) */
+  --rw-teal: #2C5F6F;
+  --rw-teal-dark: #1E4450;
+  --rw-teal-light: #3D7A8C;
+  --rw-teal-bg: #E8F0F2;
+  
+  /* Accent Colors */
+  --rw-accent-orange: #FF6B35;
+  --rw-accent-orange-light: #FFE5DC;
+  --rw-accent-purple: #6B4C9A;
+  --rw-accent-purple-light: #E8E0F5;
+  --rw-accent-teal: #00758F;
+  --rw-accent-teal-light: #CCF0F7;
+  
+  /* Status Colors */
+  --rw-success: #2E7D32;
+  --rw-success-light: #E8F5E9;
+  --rw-warning: #F57C00;
+  --rw-warning-light: #FFF3E0;
+  --rw-error: #D32F2F;
+  --rw-error-light: #FFEBEE;
+  --rw-info: #0288D1;
+  --rw-info-light: #E1F5FE;
+  
+  /* Neutral Colors - Lighter, cleaner grays */
+  --rw-gray-50: #FAFAFA;
+  --rw-gray-100: #F5F5F5;
+  --rw-gray-200: #EEEEEE;
+  --rw-gray-300: #E0E0E0;
+  --rw-gray-400: #BDBDBD;
+  --rw-gray-500: #9E9E9E;
+  --rw-gray-600: #757575;
+  --rw-gray-700: #616161;
+  --rw-gray-800: #424242;
+  --rw-gray-900: #212121;
+  
+  /* Navigation Colors */
+  --rw-nav-bg: #2D2D2D;
+  --rw-nav-text: #FFFFFF;
+  --rw-nav-active: #FF6B35;
+  
+  /* ===== SPACING - Compact, information-dense ===== */
+  --rw-space-xs: 4px;
+  --rw-space-sm: 8px;
+  --rw-space-md: 12px;
+  --rw-space-lg: 16px;
+  --rw-space-xl: 24px;
+  --rw-space-2xl: 32px;
+  
+  /* ===== BORDER RADIUS ===== */
+  --rw-radius-sm: 3px;
+  --rw-radius-md: 4px;
+  --rw-radius-lg: 6px;
+  --rw-radius-pill: 16px;
+  
+  /* ===== SHADOWS - Subtle ===== */
+  --rw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --rw-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --rw-shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+  /* ===== TYPOGRAPHY ===== */
+  --rw-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --rw-font-size-xs: 11px;
+  --rw-font-size-sm: 12px;
+  --rw-font-size-base: 13px;
+  --rw-font-size-md: 14px;
+  --rw-font-size-lg: 16px;
+  --rw-font-size-xl: 18px;
+  --rw-font-size-2xl: 20px;
+  --rw-font-size-3xl: 24px;
+  
+  /* ===== BORDERS ===== */
+  --rw-border-color: #E0E0E0;
+  --rw-border-light: #F5F5F5;
+  --rw-border-dark: #BDBDBD;
+  
+  /* ===== TRANSITIONS ===== */
+  --rw-transition: all 0.2s ease;
+}
+
+/* ===== GLOBAL RESET ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--rw-font-family);
+  font-size: var(--rw-font-size-base);
+  color: var(--rw-gray-900);
+  background-color: var(--rw-gray-50);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ===== BUTTONS - Oracle RedWood Style ===== */
+.rw-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  font-size: var(--rw-font-size-base);
+  font-weight: 500;
+  border-radius: var(--rw-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--rw-transition);
+  gap: 6px;
+  white-space: nowrap;
+  height: 32px;
+}
+
+.rw-button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--rw-shadow-md);
+}
+
+.rw-button:active {
+  transform: translateY(0);
+}
+
+.rw-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rw-button-primary {
+  background-color: var(--rw-primary);
+  color: white;
+  border-color: var(--rw-primary);
+}
+
+.rw-button-primary:hover {
+  background-color: var(--rw-primary-dark);
+}
+
+.rw-button-secondary {
+  background-color: white;
+  color: var(--rw-gray-700);
+  border-color: var(--rw-border-color);
+}
+
+.rw-button-secondary:hover {
+  background-color: var(--rw-gray-50);
+  border-color: var(--rw-gray-400);
+}
+
+.rw-button-accent {
+  background-color: var(--rw-accent-orange);
+  color: white;
+  border-color: var(--rw-accent-orange);
+}
+
+.rw-button-accent:hover {
+  background-color: #E55A2B;
+}
+
+/* ===== FORM ELEMENTS - Oracle RedWood Style ===== */
+.rw-form-group {
+  margin-bottom: var(--rw-space-lg);
+}
+
+.rw-form-label {
+  display: block;
+  font-size: var(--rw-font-size-sm);
+  font-weight: 500;
+  color: var(--rw-gray-700);
+  margin-bottom: 4px;
+}
+
+.rw-form-label.required::after {
+  content: '';
+  display: block;
+  font-size: var(--rw-font-size-xs);
+  color: var(--rw-accent-orange);
+  margin-top: 2px;
+}
+
+.rw-form-required {
+  font-size: var(--rw-font-size-xs);
+  color: var(--rw-accent-orange);
+  margin-top: 2px;
+  display: block;
+}
+
+.rw-input,
+.rw-select,
+.rw-textarea {
+  width: 100%;
+  padding: 6px 12px;
+  font-size: var(--rw-font-size-base);
+  color: var(--rw-gray-900);
+  background-color: white;
+  border: 1px solid var(--rw-border-color);
+  border-radius: var(--rw-radius-md);
+  transition: var(--rw-transition);
+  height: 32px;
+}
+
+.rw-input:focus,
+.rw-select:focus,
+.rw-textarea:focus {
+  outline: none;
+  border-color: var(--rw-primary);
+  box-shadow: 0 0 0 2px var(--rw-primary-bg);
+}
+
+.rw-input.error,
+.rw-select.error,
+.rw-textarea.error {
+  border-color: var(--rw-error);
+}
+
+.rw-input.error:focus,
+.rw-select.error:focus,
+.rw-textarea.error:focus {
+  box-shadow: 0 0 0 2px var(--rw-error-light);
+}
+
+.rw-textarea {
+  height: auto;
+  min-height: 80px;
+  resize: vertical;
+}
+
+.rw-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23757575' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.rw-input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.rw-input-icon {
+  position: absolute;
+  right: 12px;
+  color: var(--rw-gray-500);
+  pointer-events: none;
+}
+
+.rw-input-action {
+  position: absolute;
+  right: 8px;
+  background: white;
+  border: 1px solid var(--rw-border-color);
+  border-radius: var(--rw-radius-sm);
+  padding: 4px 8px;
+  font-size: var(--rw-font-size-xs);
+  cursor: pointer;
+  color: var(--rw-gray-700);
+}
+
+.rw-input-action:hover {
+  background-color: var(--rw-gray-50);
+}
+
+/* ===== TABLES - Oracle RedWood Style ===== */
+.rw-table-container {
+  background: white;
+  border: 1px solid var(--rw-border-color);
+  border-radius: var(--rw-radius-md);
+  overflow: hidden;
+}
+
+.rw-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--rw-font-size-sm);
+}
+
+.rw-table thead {
+  background-color: var(--rw-gray-50);
+  border-bottom: 2px solid var(--rw-border-color);
+}
+
+.rw-table th {
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--rw-gray-700);
+  font-size: var(--rw-font-size-sm);
+  white-space: nowrap;
+}
+
+.rw-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.rw-table th.sortable:hover {
+  background-color: var(--rw-gray-100);
+}
+
+.rw-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rw-border-light);
+  color: var(--rw-gray-900);
+}
+
+.rw-table tbody tr:hover {
+  background-color: var(--rw-gray-50);
+}
+
+.rw-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rw-table-checkbox {
+  width: 40px;
+  text-align: center;
+}
+
+.rw-table-actions {
+  width: 60px;
+  text-align: center;
+}
+
+.rw-table-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--rw-gray-600);
+  border-radius: var(--rw-radius-sm);
+}
+
+.rw-table-action-btn:hover {
+  background-color: var(--rw-gray-100);
+  color: var(--rw-gray-900);
+}
+
+/* ===== CARDS - Oracle RedWood Style ===== */
+.rw-card {
+  background: white;
+  border: 1px solid var(--rw-border-color);
+  border-radius: var(--rw-radius-md);
+  overflow: hidden;
+  transition: var(--rw-transition);
+}
+
+.rw-card:hover {
+  box-shadow: var(--rw-shadow-md);
+}
+
+.rw-card-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--rw-border-light);
+  background-color: var(--rw-gray-50);
+}
+
+.rw-card-title {
+  font-size: var(--rw-font-size-md);
+  font-weight: 600;
+  color: var(--rw-gray-900);
+  margin: 0;
+}
+
+.rw-card-body {
+  padding: 16px;
+}
+
+.rw-card-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--rw-border-light);
+  background-color: var(--rw-gray-50);
+}
+
+/* ===== STATUS BADGES - Oracle RedWood Style ===== */
+.rw-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  font-size: var(--rw-font-size-xs);
+  font-weight: 500;
+  border-radius: var(--rw-radius-pill);
+  white-space: nowrap;
+}
+
+.rw-badge-primary {
+  background-color: var(--rw-primary-bg);
+  color: var(--rw-primary);
+}
+
+.rw-badge-success {
+  background-color: var(--rw-success-light);
+  color: var(--rw-success);
+}
+
+.rw-badge-warning {
+  background-color: var(--rw-warning-light);
+  color: var(--rw-warning);
+}
+
+.rw-badge-error {
+  background-color: var(--rw-error-light);
+  color: var(--rw-error);
+}
+
+.rw-badge-orange {
+  background-color: var(--rw-accent-orange-light);
+  color: var(--rw-accent-orange);
+}
+
+.rw-badge-teal {
+  background-color: var(--rw-accent-teal-light);
+  color: var(--rw-accent-teal);
+}
+
+/* ===== NAVIGATION - Oracle RedWood Style ===== */
+.rw-nav-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background-color: var(--rw-nav-bg);
+  border-top: 1px solid var(--rw-gray-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 1000;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rw-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 16px;
+  color: var(--rw-nav-text);
+  text-decoration: none;
+  font-size: var(--rw-font-size-xs);
+  transition: var(--rw-transition);
+  cursor: pointer;
+  border-radius: var(--rw-radius-sm);
+  gap: 2px;
+  min-width: 80px;
+}
+
+.rw-nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.rw-nav-item.active {
+  color: var(--rw-nav-active);
+}
+
+.rw-nav-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ===== HEADER - Oracle RedWood Style ===== */
+.rw-header {
+  background-color: var(--rw-primary);
+  color: white;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--rw-shadow-md);
+}
+
+.rw-header-title {
+  font-size: var(--rw-font-size-xl);
+  font-weight: 600;
+  margin: 0;
+}
+
+.rw-header-search {
+  flex: 1;
+  max-width: 600px;
+  margin: 0 24px;
+}
+
+.rw-header-search input {
+  width: 100%;
+  padding: 6px 12px 6px 36px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--rw-radius-md);
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: var(--rw-font-size-sm);
+}
+
+.rw-header-search input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.rw-header-search input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.rw-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ===== BREADCRUMB - Oracle RedWood Style ===== */
+.rw-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--rw-font-size-sm);
+  color: var(--rw-gray-600);
+  margin-bottom: 16px;
+}
+
+.rw-breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rw-breadcrumb-link {
+  color: var(--rw-primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.rw-breadcrumb-link:hover {
+  text-decoration: underline;
+}
+
+.rw-breadcrumb-separator {
+  color: var(--rw-gray-400);
+}
+
+/* ===== SECTION DIVIDER - Oracle RedWood Style ===== */
+.rw-section-divider {
+  height: 3px;
+  background: linear-gradient(to right, var(--rw-accent-purple), var(--rw-accent-purple) 50%, transparent 50%);
+  margin: 24px 0;
+}
+
+/* ===== KPI CARDS - Oracle RedWood Style ===== */
+.rw-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* ===== CHARTS GRID - Horizontal Scrollable ===== */
+.rw-charts-grid,
+.rw-reports-grid {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 12px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  flex-wrap: nowrap;
+  margin-bottom: 24px;
+  /* Hide scrollbar but keep functionality */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(199, 70, 52, 0.3) transparent;
+}
+
+.rw-charts-grid::-webkit-scrollbar,
+.rw-reports-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.rw-charts-grid::-webkit-scrollbar-track,
+.rw-reports-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.rw-charts-grid::-webkit-scrollbar-thumb,
+.rw-reports-grid::-webkit-scrollbar-thumb {
+  background: rgba(199, 70, 52, 0.3);
+  border-radius: 4px;
+}
+
+.rw-charts-grid::-webkit-scrollbar-thumb:hover,
+.rw-reports-grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(199, 70, 52, 0.5);
+}
+
+/* Chart cards within the grid */
+.rw-charts-grid > .rw-card,
+.rw-reports-grid > .rw-card {
+  min-width: 380px;
+  width: 380px;
+  max-width: 380px;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rw-charts-grid > .rw-card,
+  .rw-reports-grid > .rw-card {
+    min-width: 320px;
+    width: 320px;
+    max-width: 320px;
+  }
+}
+
+.rw-kpi-card {
+  background: white;
+  border: 1px solid var(--rw-border-color);
+  border-radius: var(--rw-radius-md);
+  padding: 16px;
+  transition: var(--rw-transition);
+}
+
+.rw-kpi-card:hover {
+  box-shadow: var(--rw-shadow-md);
+  transform: translateY(-2px);
+}
+
+.rw-kpi-label {
+  font-size: var(--rw-font-size-sm);
+  color: var(--rw-gray-600);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.rw-kpi-value {
+  font-size: var(--rw-font-size-2xl);
+  font-weight: 600;
+  color: var(--rw-gray-900);
+  margin-bottom: 4px;
+}
+
+.rw-kpi-subtitle {
+  font-size: var(--rw-font-size-xs);
+  color: var(--rw-gray-500);
+}
+
+.rw-kpi-change {
+  font-size: var(--rw-font-size-xs);
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.rw-kpi-change.positive {
+  color: var(--rw-success);
+}
+
+.rw-kpi-change.negative {
+  color: var(--rw-error);
+}
+
+/* ===== CHARTS - Oracle RedWood Style ===== */
+.rw-chart-container {
+  background: white;
+  border: 1px solid var(--rw-border-color);
+  border-radius: var(--rw-radius-md);
+  padding: 16px;
+}
+
+.rw-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rw-border-light);
+}
+
+.rw-chart-title {
+  font-size: var(--rw-font-size-md);
+  font-weight: 600;
+  color: var(--rw-gray-900);
+}
+
+.rw-chart-subtitle {
+  font-size: var(--rw-font-size-xs);
+  color: var(--rw-gray-500);
+  margin-top: 2px;
+}
+
+.rw-chart-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Chart Colors - Teal/Orange Palette */
+.rw-chart-color-1 { color: var(--rw-primary); fill: var(--rw-primary); }
+.rw-chart-color-2 { color: var(--rw-accent-orange); fill: var(--rw-accent-orange); }
+.rw-chart-color-3 { color: var(--rw-accent-teal); fill: var(--rw-accent-teal); }
+.rw-chart-color-4 { color: var(--rw-accent-purple); fill: var(--rw-accent-purple); }
+.rw-chart-color-5 { color: var(--rw-info); fill: var(--rw-info); }
+
+/* Bar Chart Styles */
+.rw-bar-chart-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.rw-bar-label {
+  min-width: 180px;
+  font-size: var(--rw-font-size-sm);
+  color: var(--rw-gray-700);
+  font-weight: 500;
+}
+
+.rw-bar-container {
+  flex: 1;
+  height: 24px;
+  background-color: var(--rw-gray-100);
+  border-radius: var(--rw-radius-sm);
+  overflow: hidden;
+  position: relative;
+}
+
+.rw-bar {
+  height: 100%;
+  border-radius: var(--rw-radius-sm);
+  transition: width 0.3s ease;
+}
+
+.rw-bar-value {
+  min-width: 50px;
+  text-align: right;
+  font-size: var(--rw-font-size-sm);
+  font-weight: 600;
+  color: var(--rw-gray-700);
+}
+
+/* Occupancy Chart Styles */
+.rw-occupancy-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rw-gray-200);
+}
+
+.rw-occupancy-row:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.rw-occupancy-info {
+  min-width: 180px;
+}
+
+.rw-occupancy-name {
+  font-size: var(--rw-font-size-sm);
+  font-weight: 500;
+  color: var(--rw-gray-800);
+  margin-bottom: 4px;
+}
+
+.rw-occupancy-units {
+  font-size: var(--rw-font-size-xs);
+  color: var(--rw-gray-500);
+}
+
+.rw-occupancy-bar-container {
+  flex: 1;
+  height: 8px;
+  background-color: var(--rw-gray-100);
+  border-radius: var(--rw-radius-pill);
+  overflow: hidden;
+}
+
+.rw-occupancy-bar {
+  height: 100%;
+  border-radius: var(--rw-radius-pill);
+  transition: width 0.3s ease;
+}
+
+.rw-occupancy-percentage {
+  min-width: 50px;
+  text-align: right;
+  font-size: var(--rw-font-size-sm);
+  font-weight: 600;
+  color: var(--rw-gray-700);
+}
+
+/* Donut Chart Styles */
+.rw-donut-chart {
+  padding: 8px 0;
+}
+
+.rw-donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rw-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rw-legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--rw-radius-sm);
+  flex-shrink: 0;
+}
+
+.rw-legend-label {
+  flex: 1;
+  font-size: var(--rw-font-size-sm);
+  color: var(--rw-gray-700);
+  font-weight: 500;
+}
+
+.rw-legend-value {
+  font-size: var(--rw-font-size-sm);
+  font-weight: 600;
+  color: var(--rw-gray-700);
+}
+
+/* ===== MODAL - Oracle RedWood Style ===== */
+.rw-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.rw-modal {
+  background: white;
+  border-radius: var(--rw-radius-lg);
+  box-shadow: var(--rw-shadow-lg);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rw-modal-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--rw-border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--rw-gray-50);
+}
+
+.rw-modal-title {
+  font-size: var(--rw-font-size-lg);
+  font-weight: 600;
+  color: var(--rw-gray-900);
+  margin: 0;
+}
+
+.rw-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--rw-gray-600);
+  border-radius: var(--rw-radius-sm);
+}
+
+.rw-modal-close:hover {
+  background-color: var(--rw-gray-200);
+  color: var(--rw-gray-900);
+}
+
+.rw-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.rw-modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--rw-border-color);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  background-color: var(--rw-gray-50);
+}
+
+/* ===== FORM LAYOUTS - Oracle RedWood Style ===== */
+.rw-form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.rw-form-row-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.rw-form-row-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.rw-form-row-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.rw-form-section {
+  margin-bottom: 32px;
+}
+
+.rw-form-section-title {
+  font-size: var(--rw-font-size-md);
+  font-weight: 600;
+  color: var(--rw-gray-900);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--rw-accent-purple);
+}
+
+/* ===== FILTER BAR - Oracle RedWood Style ===== */
+.rw-filter-bar {
+  background: white;
+  border: 1px solid var(--rw-border-color);
+  border-radius: var(--rw-radius-md);
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rw-filter-search {
+  flex: 1;
+  position: relative;
+}
+
+.rw-filter-search input {
+  width: 100%;
+  padding-left: 36px;
+}
+
+.rw-filter-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--rw-gray-500);
+}
+
+.rw-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background-color: var(--rw-primary-bg);
+  color: var(--rw-primary);
+  border-radius: var(--rw-radius-pill);
+  font-size: var(--rw-font-size-sm);
+  font-weight: 500;
+}
+
+.rw-filter-chip-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--rw-primary);
+  display: flex;
+  align-items: center;
+}
+
+/* ===== PAGE LAYOUT - Oracle RedWood Style ===== */
+.rw-page {
+  padding: 24px;
+  padding-bottom: 72px; /* Account for bottom nav */
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.rw-page-header {
+  margin-bottom: 24px;
+}
+
+.rw-page-title {
+  font-size: var(--rw-font-size-2xl);
+  font-weight: 600;
+  color: var(--rw-gray-900);
+  margin-bottom: 8px;
+}
+
+.rw-page-subtitle {
+  font-size: var(--rw-font-size-sm);
+  color: var(--rw-gray-600);
+}
+
+.rw-page-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+/* ===== GRID LAYOUTS ===== */
+.rw-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.rw-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.rw-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* Responsive grids */
+@media (max-width: 1200px) {
+  .rw-grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .rw-grid-3,
+  .rw-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .rw-grid-2,
+  .rw-grid-3,
+  .rw-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== UTILITY CLASSES ===== */
+.rw-text-center { text-align: center; }
+.rw-text-right { text-align: right; }
+.rw-text-left { text-align: left; }
+
+.rw-font-bold { font-weight: 600; }
+.rw-font-semibold { font-weight: 500; }
+.rw-font-normal { font-weight: 400; }
+
+.rw-text-primary { color: var(--rw-primary); }
+.rw-text-success { color: var(--rw-success); }
+.rw-text-warning { color: var(--rw-warning); }
+.rw-text-error { color: var(--rw-error); }
+.rw-text-gray { color: var(--rw-gray-600); }
+
+.rw-bg-primary { background-color: var(--rw-primary); }
+.rw-bg-success { background-color: var(--rw-success); }
+.rw-bg-warning { background-color: var(--rw-warning); }
+.rw-bg-error { background-color: var(--rw-error); }
+
+.rw-mb-0 { margin-bottom: 0; }
+.rw-mb-1 { margin-bottom: var(--rw-space-sm); }
+.rw-mb-2 { margin-bottom: var(--rw-space-md); }
+.rw-mb-3 { margin-bottom: var(--rw-space-lg); }
+.rw-mb-4 { margin-bottom: var(--rw-space-xl); }
+
+.rw-mt-0 { margin-top: 0; }
+.rw-mt-1 { margin-top: var(--rw-space-sm); }
+.rw-mt-2 { margin-top: var(--rw-space-md); }
+.rw-mt-3 { margin-top: var(--rw-space-lg); }
+.rw-mt-4 { margin-top: var(--rw-space-xl); }
+
+.rw-p-0 { padding: 0; }
+.rw-p-1 { padding: var(--rw-space-sm); }
+.rw-p-2 { padding: var(--rw-space-md); }
+.rw-p-3 { padding: var(--rw-space-lg); }
+.rw-p-4 { padding: var(--rw-space-xl); }
+
+.rw-flex { display: flex; }
+.rw-flex-col { flex-direction: column; }
+.rw-items-center { align-items: center; }
+.rw-justify-between { justify-content: space-between; }
+.rw-justify-center { justify-content: center; }
+.rw-gap-1 { gap: var(--rw-space-sm); }
+.rw-gap-2 { gap: var(--rw-space-md); }
+.rw-gap-3 { gap: var(--rw-space-lg); }
+
+.rw-cursor-pointer { cursor: pointer; }
+.rw-no-select { user-select: none; }
+
+/* ===== LOADING STATES ===== */
+.rw-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: var(--rw-gray-500);
+}
+
+.rw-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--rw-gray-200);
+  border-top-color: var(--rw-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== EMPTY STATES ===== */
+.rw-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--rw-gray-500);
+}
+
+.rw-empty-state-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  color: var(--rw-gray-400);
+}
+
+.rw-empty-state-title {
+  font-size: var(--rw-font-size-lg);
+  font-weight: 600;
+  color: var(--rw-gray-700);
+  margin-bottom: 8px;
+}
+
+.rw-empty-state-text {
+  font-size: var(--rw-font-size-sm);
+  color: var(--rw-gray-500);
+}
+
+/* Settings Page Styles */
+.rw-settings-content {
+  max-width: 1200px;
+}
+
+.rw-settings-section {
+  background: white;
+  border: 1px solid var(--rw-gray-200);
+  border-radius: var(--rw-radius-md);
+  padding: var(--rw-space-xl);
+  margin-bottom: var(--rw-space-xl);
+}
+
+.rw-section-description {
+  color: var(--rw-gray-600);
+  font-size: var(--rw-font-sm);
+  margin-top: var(--rw-space-xs);
+  margin-bottom: var(--rw-space-lg);
+}
+
+.rw-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rw-space-sm);
+}
+
+.rw-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rw-space-xs);
+  padding: var(--rw-space-xs) var(--rw-space-md);
+  background: var(--rw-gray-100);
+  border: 1px solid var(--rw-gray-300);
+  border-radius: var(--rw-radius-pill);
+  font-size: var(--rw-font-sm);
+  font-weight: 500;
+}
+
+.rw-tag-remove {
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  color: var(--rw-gray-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.rw-tag-remove:hover {
+  background: var(--rw-gray-300);
+  color: var(--rw-gray-900);
+}
+
+.rw-input-group {
+  display: flex;
+  gap: var(--rw-space-sm);
+}
+
+.rw-input-group .rw-input {
+  flex: 1;
+}
+
+.rw-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--rw-space-lg);
+}
+
+.rw-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rw-space-xs);
+}
+
+.rw-label {
+  font-size: var(--rw-font-sm);
+  font-weight: 600;
+  color: var(--rw-gray-700);
+}
+
+.rw-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: var(--rw-space-sm);
+  font-size: var(--rw-font-base);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.rw-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--rw-primary);
+}
+
+.rw-help-text {
+  font-size: var(--rw-font-xs);
+  color: var(--rw-gray-600);
+  margin-top: var(--rw-space-xs);
+}
+
+.rw-action-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--rw-space-lg);
+}
+
+.rw-action-card {
+  border: 1px solid var(--rw-gray-200);
+  border-radius: var(--rw-radius-md);
+  padding: var(--rw-space-lg);
+  transition: all 0.2s;
+}
+
+.rw-action-card:hover {
+  border-color: var(--rw-primary);
+  box-shadow: 0 2px 8px rgba(44, 95, 111, 0.1);
+}
+
+.rw-action-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--rw-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--rw-space-md);
+}
+
+.rw-action-card-content h4 {
+  font-size: var(--rw-font-base);
+  font-weight: 600;
+  color: var(--rw-gray-900);
+  margin-bottom: var(--rw-space-xs);
+}
+
+.rw-action-card-content p {
+  font-size: var(--rw-font-sm);
+  color: var(--rw-gray-600);
+}
+
+.rw-alert {
+  padding: var(--rw-space-md) var(--rw-space-lg);
+  border-radius: var(--rw-radius-md);
+  margin-bottom: var(--rw-space-lg);
+  font-size: var(--rw-font-sm);
+  font-weight: 500;
+}
+
+.rw-alert-success {
+  background: #E8F5E9;
+  color: #2E7D32;
+  border: 1px solid #81C784;
+}
+
+.rw-alert-error {
+  background: #FFEBEE;
+  color: #D32F2F;
+  border: 1px solid #E57373;
+}
+
+/* Analytics Page Styles */
+.rw-analytics-content {
+  max-width: 1400px;
+}
+
+.rw-analytics-section {
+  margin-bottom: var(--rw-space-2xl);
+}
+
+.rw-analytics-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Filters Section */
+.rw-filters-section {
+  background: white;
+  border: 1px solid var(--rw-gray-200);
+  border-radius: var(--rw-radius-md);
+  padding: var(--rw-space-lg);
+  margin-bottom: var(--rw-space-xl);
+}
+
+.rw-filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--rw-space-md);
+}
+
+.rw-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rw-space-xs);
+}
+
+.rw-filter-group label {
+  font-size: var(--rw-font-sm);
+  font-weight: 600;
+  color: var(--rw-gray-700);
+}
+
+/* ===== CAROUSEL - Oracle RedWood Style ===== */
+
+/* Carousel Header with Navigation */
+.rw-carousel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.rw-carousel-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.rw-carousel-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--rw-gray-300);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.rw-carousel-arrow:hover:not(:disabled) {
+  background: var(--rw-gray-100);
+  border-color: var(--rw-primary);
+}
+
+.rw-carousel-arrow:hover:not(:disabled) svg {
+  stroke: var(--rw-primary);
+}
+
+.rw-carousel-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.rw-carousel-arrow svg {
+  stroke: var(--rw-gray-600);
+}
+
+/* Carousel Container */
+.rw-carousel-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* Horizontal Scroll Container - Hide Scrollbar */
+.rw-horizontal-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  flex-wrap: nowrap;
+  /* Hide scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.rw-horizontal-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.rw-horizontal-scroll > .rw-card {
+  min-width: 420px;
+  width: 420px;
+  max-width: 420px;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .rw-horizontal-scroll > .rw-card {
+    min-width: 380px;
+    width: 380px;
+    max-width: 380px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .rw-horizontal-scroll > .rw-card {
+    min-width: 360px;
+    width: 360px;
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 768px) {
+  .rw-horizontal-scroll > .rw-card {
+    min-width: 340px;
+    width: 340px;
+    max-width: 340px;
+  }
+
+  .rw-carousel-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .rw-carousel-nav {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .rw-horizontal-scroll > .rw-card {
+    min-width: 300px;
+    width: 300px;
+    max-width: 300px;
+  }
+}
+
+/* Carousel Dots Navigation */
+.rw-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.rw-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--rw-gray-300);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.rw-carousel-dot:hover {
+  background: var(--rw-gray-400);
+}
+
+.rw-carousel-dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background: var(--rw-primary);
+}
+
+/* ===== MODULE LAYOUT - Horizontal Tabs + Content ===== */
+.rw-module-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: calc(100vh - 200px);
+  background: var(--rw-gray-50);
+}
+
+.rw-module-content {
+  flex: 1;
+  padding: 24px;
+  overflow-x: hidden;
+  background: var(--rw-gray-50);
+  max-width: 100%;
+}
+
+/* Mobile Responsive - Full width content + bottom tab bar */
+@media (max-width: 768px) {
+  .rw-module-layout {
+    flex-direction: column;
+  }
+
+  .rw-module-content {
+    padding: 16px;
+    padding-bottom: 80px; /* Space for bottom tab bar */
+  }
+}
+

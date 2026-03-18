@@ -1,0 +1,73 @@
+/* Module Sub-Navigation - Horizontal Tabs */
+.module-subnav {
+  background: white;
+  border-bottom: 1px solid #E0E0E0;
+  margin: -24px -24px 24px -24px; /* Negative margin to extend to page edges */
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.module-subnav-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 24px;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.module-subnav-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.module-subnav-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #616161;
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.module-subnav-item:hover {
+  background: rgba(44, 95, 111, 0.05);
+  color: #2C5F6F;
+}
+
+.module-subnav-item.active {
+  color: #2C5F6F;
+  border-bottom-color: #2C5F6F;
+  background: rgba(44, 95, 111, 0.03);
+  font-weight: 600;
+}
+
+.module-subnav-icon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .module-subnav {
+    margin: -16px -16px 16px -16px;
+  }
+
+  .module-subnav-container {
+    padding: 0 16px;
+  }
+
+  .module-subnav-item {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+}
+

@@ -1,0 +1,75 @@
+[
+  {
+    "FLOOR_ID": "FLR-001",
+    "PROPERTY_ID": "PROP-001",
+    "FLOOR_NUMBER": 10,
+    "FLOOR_NAME": "Floor 10",
+    "FLOOR_PLAN_IMAGE_URL": null,
+    "FLOOR_PLAN_LAYOUT": null
+  },
+  {
+    "FLOOR_ID": "FLR-002",
+    "PROPERTY_ID": "PROP-001",
+    "FLOOR_NUMBER": 9,
+    "FLOOR_NAME": "Floor 9",
+    "FLOOR_PLAN_IMAGE_URL": null,
+    "FLOOR_PLAN_LAYOUT": null
+  },
+  {
+    "FLOOR_ID": "FLR-003",
+    "PROPERTY_ID": "PROP-001",
+    "FLOOR_NUMBER": 8,
+    "FLOOR_NAME": "Floor 8",
+    "FLOOR_PLAN_IMAGE_URL": null,
+    "FLOOR_PLAN_LAYOUT": null
+  },
+  {
+    "FLOOR_ID": "FLR-004",
+    "PROPERTY_ID": "PROP-002",
+    "FLOOR_NUMBER": 15,
+    "FLOOR_NAME": "Floor 15",
+    "FLOOR_PLAN_IMAGE_URL": null,
+    "FLOOR_PLAN_LAYOUT": null
+  },
+  {
+    "FLOOR_ID": "FLR-005",
+    "PROPERTY_ID": "PROP-002",
+    "FLOOR_NUMBER": 14,
+    "FLOOR_NAME": "Floor 14",
+    "FLOOR_PLAN_IMAGE_URL": null,
+    "FLOOR_PLAN_LAYOUT": null
+  },
+  {
+    "FLOOR_ID": "FLR-006",
+    "PROPERTY_ID": "PROP-003",
+    "FLOOR_NUMBER": 18,
+    "FLOOR_NAME": "Floor 18",
+    "FLOOR_PLAN_IMAGE_URL": null,
+    "FLOOR_PLAN_LAYOUT": null
+  },
+  {
+    "FLOOR_ID": "FLR-007",
+    "PROPERTY_ID": "PROP-004",
+    "FLOOR_NUMBER": 1,
+    "FLOOR_NAME": "Ground",
+    "FLOOR_PLAN_IMAGE_URL": null,
+    "FLOOR_PLAN_LAYOUT": null
+  },
+  {
+    "FLOOR_ID": "FLR-008",
+    "PROPERTY_ID": "PROP-006",
+    "FLOOR_NUMBER": 1,
+    "FLOOR_NAME": "Ground Retail",
+    "FLOOR_PLAN_IMAGE_URL": null,
+    "FLOOR_PLAN_LAYOUT": null
+  },
+  {
+    "FLOOR_ID": "FLOOR-009",
+    "floor_id": "FLOOR-009",
+    "PROPERTY_ID": 84,
+    "FLOOR_NUMBER": 1,
+    "FLOOR_NAME": "Ground",
+    "FLOOR_PLAN_IMAGE_URL": null,
+    "FLOOR_PLAN_LAYOUT": null
+  }
+]

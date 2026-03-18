@@ -1,0 +1,163 @@
+/**
+ * Module Navigation - Oracle RedWood Style
+ * Desktop/Tablet: Horizontal tab bar
+ * Mobile: Bottom tab bar
+ */
+
+/* ===== DESKTOP/TABLET: HORIZONTAL TAB BAR ===== */
+.module-vertical-nav.desktop-sidebar {
+  width: 100%;
+  background: white;
+  border-bottom: 1px solid var(--gray-200);
+  flex-shrink: 0;
+  display: flex;
+  padding: 0;
+}
+
+.module-vertical-nav-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  width: 100%;
+}
+
+.module-vertical-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  text-decoration: none;
+  color: var(--gray-600);
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border-bottom: 3px solid transparent;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.module-vertical-nav-item:hover {
+  background: var(--gray-50);
+  color: var(--gray-900);
+}
+
+.module-vertical-nav-item.active {
+  color: var(--primary-600);
+  border-bottom-color: var(--primary-500);
+  background: var(--primary-50);
+}
+
+.module-vertical-nav-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.module-vertical-nav-icon {
+  width: 20px;
+  height: 20px;
+  stroke: var(--gray-600);
+  transition: all 0.2s ease;
+}
+
+.module-vertical-nav-item:hover .module-vertical-nav-icon {
+  stroke: var(--gray-900);
+}
+
+.module-vertical-nav-item.active .module-vertical-nav-icon {
+  stroke: var(--primary-600);
+}
+
+.module-vertical-nav-label {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ===== MOBILE: BOTTOM TAB BAR ===== */
+.module-bottom-tabs.mobile-tabs {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Hide desktop sidebar on mobile */
+  .module-vertical-nav.desktop-sidebar {
+    display: none;
+  }
+
+  /* Show bottom tab bar on mobile */
+  .module-bottom-tabs.mobile-tabs {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid var(--gray-200);
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06);
+    z-index: 100;
+    height: 60px;
+    padding: 0;
+  }
+
+  .module-bottom-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    text-decoration: none;
+    color: var(--gray-500);
+    font-size: 10px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border-top: 3px solid transparent;
+    padding: 8px 4px;
+  }
+
+  .module-bottom-tab:hover {
+    background: var(--gray-50);
+  }
+
+  .module-bottom-tab.active {
+    color: var(--primary-600);
+    border-top-color: var(--primary-500);
+    background: var(--primary-50);
+  }
+
+  .module-bottom-tab-icon {
+    width: 20px;
+    height: 20px;
+    stroke: var(--gray-500);
+    transition: all 0.2s ease;
+  }
+
+  .module-bottom-tab:hover .module-bottom-tab-icon {
+    stroke: var(--primary-500);
+  }
+
+  .module-bottom-tab.active .module-bottom-tab-icon {
+    stroke: var(--primary-600);
+  }
+
+  .module-bottom-tab-label {
+    font-size: 10px;
+    text-align: center;
+    line-height: 1.2;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Add padding to module content to account for bottom tab bar */
+  .rw-module-content {
+    padding-bottom: 80px;
+  }
+}
+
