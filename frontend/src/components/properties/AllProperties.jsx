@@ -79,17 +79,6 @@ function AllProperties() {
     setFilters(prev => ({ ...prev, [key]: value }));
   };
 
-  const getPropertyTypeIcon = (type) => {
-    const icons = {
-      'COMMERCIAL': '🏢',
-      'RESIDENTIAL': '🏠',
-      'INDUSTRIAL': '🏭',
-      'RETAIL': '🛍️',
-      'MIXED_USE': '🏗️'
-    };
-    return icons[type] || '🏢';
-  };
-
   const getStatusClass = (status) => {
     const classes = {
       'ACTIVE': 'status-active',
@@ -122,50 +111,35 @@ function AllProperties() {
 
   return (
     <div className="properties-container">
-      <div className="properties-hero">
-        <div className="properties-hero-content">
-          <div className="properties-hero-top">
-            <div className="properties-hero-title">
-              <div className="properties-hero-icon">🏢</div>
-              <div className="properties-hero-text">
-                <h1>Property Portfolio</h1>
-                <p>Manage and monitor all your properties in one place</p>
-              </div>
-            </div>
-            <button className="properties-add-btn" onClick={handleCreate}>
-              <span className="btn-icon">+</span>
-              Add New Property
+      <div className="properties-header">
+        <div className="properties-header-content">
+          <div className="properties-title-row">
+            <h1 className="properties-title">Properties</h1>
+            <button className="btn-primary" onClick={handleCreate}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              Add Property
             </button>
           </div>
 
           <div className="properties-stats">
-            <div className="property-stat-card">
-              <div className="property-stat-icon">🏘️</div>
-              <div className="property-stat-content">
-                <div className="property-stat-value">{stats.total}</div>
-                <div className="property-stat-label">Total Properties</div>
-              </div>
+            <div className="stat-card">
+              <div className="stat-label">Total Properties</div>
+              <div className="stat-value">{stats.total}</div>
             </div>
-            <div className="property-stat-card">
-              <div className="property-stat-icon">✅</div>
-              <div className="property-stat-content">
-                <div className="property-stat-value">{stats.active}</div>
-                <div className="property-stat-label">Active</div>
-              </div>
+            <div className="stat-card">
+              <div className="stat-label">Active</div>
+              <div className="stat-value stat-value-success">{stats.active}</div>
             </div>
-            <div className="property-stat-card">
-              <div className="property-stat-icon">📐</div>
-              <div className="property-stat-content">
-                <div className="property-stat-value">{formatArea(stats.totalArea)}</div>
-                <div className="property-stat-label">Total Area</div>
-              </div>
+            <div className="stat-card">
+              <div className="stat-label">Total Area</div>
+              <div className="stat-value">{formatArea(stats.totalArea)}</div>
             </div>
-            <div className="property-stat-card">
-              <div className="property-stat-icon">🔢</div>
-              <div className="property-stat-content">
-                <div className="property-stat-value">{stats.totalUnits}</div>
-                <div className="property-stat-label">Total Units</div>
-              </div>
+            <div className="stat-card">
+              <div className="stat-label">Total Units</div>
+              <div className="stat-value">{stats.totalUnits}</div>
             </div>
           </div>
         </div>
@@ -173,179 +147,145 @@ function AllProperties() {
 
       <div className="properties-content">
         <div className="properties-filters">
-          <div className="filters-row">
-            <div className="filter-group">
-              <label>
-                <span className="label-icon">🔍</span>
-                Search Properties
-              </label>
-              <input
-                type="text"
-                className="filter-input"
-                placeholder="Search by name, code, or address..."
-                value={filters.searchQuery}
-                onChange={(e) => handleFilterChange('searchQuery', e.target.value)}
-              />
-            </div>
-
-            <div className="filter-group">
-              <label>
-                <span className="label-icon">🏷️</span>
-                Status
-              </label>
-              <select
-                className="filter-select"
-                value={filters.status}
-                onChange={(e) => handleFilterChange('status', e.target.value)}
-              >
-                <option value="">All Status</option>
-                <option value="ACTIVE">Active</option>
-                <option value="INACTIVE">Inactive</option>
-                <option value="UNDER_CONSTRUCTION">Under Construction</option>
-              </select>
-            </div>
-
-            <div className="filter-group">
-              <label>
-                <span className="label-icon">🏢</span>
-                Type
-              </label>
-              <select
-                className="filter-select"
-                value={filters.type}
-                onChange={(e) => handleFilterChange('type', e.target.value)}
-              >
-                <option value="">All Types</option>
-                <option value="COMMERCIAL">Commercial</option>
-                <option value="RESIDENTIAL">Residential</option>
-                <option value="INDUSTRIAL">Industrial</option>
-                <option value="RETAIL">Retail</option>
-                <option value="MIXED_USE">Mixed Use</option>
-              </select>
-            </div>
-
-            <div className="filter-group">
-              <label>
-                <span className="label-icon">📍</span>
-                City
-              </label>
-              <select
-                className="filter-select"
-                value={filters.city}
-                onChange={(e) => handleFilterChange('city', e.target.value)}
-              >
-                <option value="">All Cities</option>
-                <option value="Nairobi">Nairobi</option>
-                <option value="Mombasa">Mombasa</option>
-                <option value="Kisumu">Kisumu</option>
-                <option value="Nakuru">Nakuru</option>
-              </select>
-            </div>
-          </div>
+          <input
+            type="text"
+            className="filter-search"
+            placeholder="Search properties..."
+            value={filters.searchQuery}
+            onChange={(e) => handleFilterChange('searchQuery', e.target.value)}
+          />
+          <select
+            className="filter-select"
+            value={filters.status}
+            onChange={(e) => handleFilterChange('status', e.target.value)}
+          >
+            <option value="">All Status</option>
+            <option value="ACTIVE">Active</option>
+            <option value="INACTIVE">Inactive</option>
+            <option value="UNDER_CONSTRUCTION">Under Construction</option>
+          </select>
+          <select
+            className="filter-select"
+            value={filters.type}
+            onChange={(e) => handleFilterChange('type', e.target.value)}
+          >
+            <option value="">All Types</option>
+            <option value="COMMERCIAL">Commercial</option>
+            <option value="RESIDENTIAL">Residential</option>
+            <option value="INDUSTRIAL">Industrial</option>
+            <option value="RETAIL">Retail</option>
+            <option value="MIXED_USE">Mixed Use</option>
+          </select>
+          <select
+            className="filter-select"
+            value={filters.city}
+            onChange={(e) => handleFilterChange('city', e.target.value)}
+          >
+            <option value="">All Cities</option>
+            <option value="Nairobi">Nairobi</option>
+            <option value="Mombasa">Mombasa</option>
+            <option value="Kisumu">Kisumu</option>
+            <option value="Nakuru">Nakuru</option>
+          </select>
         </div>
 
         {loading ? (
           <div className="properties-loading">
-            <div className="properties-spinner"></div>
-            <div className="properties-loading-text">Loading properties...</div>
+            <div className="spinner"></div>
+            <span>Loading properties...</span>
           </div>
         ) : properties.length === 0 ? (
           <div className="properties-empty">
-            <div className="properties-empty-icon">🏢</div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
             <h3>No Properties Found</h3>
-            <p>Start by adding your first property to the portfolio</p>
-            <button className="properties-add-btn" onClick={handleCreate}>
-              <span className="btn-icon">+</span>
-              Add First Property
+            <p>Start by adding your first property</p>
+            <button className="btn-primary" onClick={handleCreate}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              Add Property
             </button>
           </div>
         ) : (
-          <div className="properties-grid">
-            {properties.map((property) => (
-              <div key={property.PROPERTY_ID} className="property-card">
-                <div className="property-card-header">
-                  <div className="property-card-top">
-                    <div className="property-type-badge">
-                      <span>{getPropertyTypeIcon(property.PROPERTY_TYPE)}</span>
-                      {property.PROPERTY_TYPE?.replace('_', ' ')}
-                    </div>
-                    <div className={`property-status-badge ${getStatusClass(property.STATUS)}`}>
-                      {property.STATUS?.replace('_', ' ')}
-                    </div>
-                  </div>
-                  <div className="property-card-title">
-                    <h3>{property.PROPERTY_NAME || property.property_name}</h3>
-                    <div className="property-card-code">
-                      {property.PROPERTY_CODE || property.property_code || 'N/A'}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="property-card-body">
-                  <div className="property-info-grid">
-                    <div className="property-info-item">
-                      <div className="property-info-label">Total Area</div>
-                      <div className="property-info-value">
-                        <span className="property-info-icon">📐</span>
-                        {formatArea(property.TOTAL_AREA || property.total_area)}
+          <div className="properties-table-wrap">
+            <table className="properties-table">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Property Name</th>
+                  <th>Type</th>
+                  <th>City</th>
+                  <th>Area</th>
+                  <th>Units</th>
+                  <th>Floors</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {properties.map((property) => (
+                  <tr key={property.PROPERTY_ID}>
+                    <td>
+                      <span className="property-code">{property.PROPERTY_CODE || 'N/A'}</span>
+                    </td>
+                    <td>
+                      <strong className="property-name">{property.PROPERTY_NAME}</strong>
+                      <div className="property-address">{property.ADDRESS}</div>
+                    </td>
+                    <td>
+                      <span className="badge badge-type">{property.PROPERTY_TYPE?.replace('_', ' ')}</span>
+                    </td>
+                    <td>{property.CITY}</td>
+                    <td>{formatArea(property.TOTAL_AREA)}</td>
+                    <td>{property.NUMBER_OF_UNITS || 'N/A'}</td>
+                    <td>{property.TOTAL_FLOORS || 'N/A'}</td>
+                    <td>
+                      <span className={`badge badge-${getStatusClass(property.STATUS)}`}>
+                        {property.STATUS?.replace('_', ' ')}
+                      </span>
+                    </td>
+                    <td>
+                      <div className="action-buttons">
+                        <button
+                          className="btn-icon btn-view"
+                          onClick={() => window.location.href = `/properties/${property.PROPERTY_ID}`}
+                          title="View Details"
+                        >
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                          </svg>
+                        </button>
+                        <button
+                          className="btn-icon btn-edit"
+                          onClick={() => handleEdit(property)}
+                          title="Edit"
+                        >
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                            <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                          </svg>
+                        </button>
+                        <button
+                          className="btn-icon btn-delete"
+                          onClick={() => handleDelete(property.PROPERTY_ID)}
+                          title="Delete"
+                        >
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <polyline points="3 6 5 6 21 6"/>
+                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                          </svg>
+                        </button>
                       </div>
-                    </div>
-                    <div className="property-info-item">
-                      <div className="property-info-label">Units</div>
-                      <div className="property-info-value">
-                        <span className="property-info-icon">🔢</span>
-                        {property.NUMBER_OF_UNITS || property.number_of_units || 'N/A'}
-                      </div>
-                    </div>
-                    <div className="property-info-item">
-                      <div className="property-info-label">Floors</div>
-                      <div className="property-info-value">
-                        <span className="property-info-icon">🏗️</span>
-                        {property.TOTAL_FLOORS || property.total_floors || 'N/A'}
-                      </div>
-                    </div>
-                    <div className="property-info-item">
-                      <div className="property-info-label">Year Built</div>
-                      <div className="property-info-value">
-                        <span className="property-info-icon">📅</span>
-                        {property.YEAR_BUILT || property.year_built || 'N/A'}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="property-location">
-                    <div className="property-location-icon">📍</div>
-                    <div className="property-location-text">
-                      {property.ADDRESS || property.address}, {property.CITY || property.city}
-                      {property.STATE || property.state ? `, ${property.STATE || property.state}` : ''}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="property-card-footer">
-                  <button
-                    className="property-action-btn property-action-view"
-                    onClick={() => window.location.href = `/properties/${property.PROPERTY_ID}`}
-                  >
-                    <span>👁️</span>
-                    View Details
-                  </button>
-                  <button
-                    className="property-action-btn property-action-edit"
-                    onClick={() => handleEdit(property)}
-                  >
-                    <span>✏️</span>
-                    Edit
-                  </button>
-                  <button
-                    className="property-action-btn property-action-delete"
-                    onClick={() => handleDelete(property.PROPERTY_ID)}
-                  >
-                    <span>🗑️</span>
-                  </button>
-                </div>
-              </div>
-            ))}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
       </div>
